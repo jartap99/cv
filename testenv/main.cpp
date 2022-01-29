@@ -5,54 +5,30 @@
 #include <iostream>
 #include <Eigen/Dense>
 #include <boost/math/constants/constants.hpp>
-#include <gtest/gtest.h>
+#include <glog/logging.h>
 
-#include "utils.hpp"
-
-int test_eigen()
+int main(int argc, char* argv[])
 {
-    std::cout << "Eigne Demo " << std::endl;
+    google::InitGoogleLogging(argv[0]);
+    FLAGS_logtostderr = false;
+    google::SetLogDestination(google::GLOG_INFO,"/mnt/c/Users/raj/Documents/code_dev/cv/cv/testenv/build/glogs/" );
+    LOG(INFO) << "Eigen Demo ";
     Eigen::Matrix<float,8,1> v0;
     v0(0,0) = boost::math::constants::pi<float>();
     v0(1,0) = boost::math::constants::pi<float>()*2.0f;
 
-    std::cout << " v0: " << v0 << std::endl;
+    LOG(INFO) << " v0: " << v0;
 
     Eigen::Matrix3f A;
     A << 1,2,3, 4,5,6, 7,8,9;
 
     Eigen::Vector3f b;
-    A << 3, 3, 4;
+    b << 3, 3, 4;
 
-    std::cout << "Matrix A: " << A << std::endl;
-    std::cout << "Matrix b: " << b << std::endl;
+    //LOG(INFO) << "Matrix A: " << A;
+    //LOG(INFO) << "Matrix b: " << b;
 
     Eigen::Vector3f x= A.colPivHouseholderQr().solve(b);
-    std::cout << "Solution of Ax = b is : x= " << x << std::endl;
+    //LOG(INFO) << "Solution of Ax = b is : x= " << x ;
     return 1;
-}
-
-TEST(HelloTest, BasicAssertions)
-{
-    EXPECT_STRNE("Hello", "World");
-    EXPECT_EQ(7*6.0, 42.0);
-}
-
-
-TEST(UtilsTests, ComputeTest)
-{
-    EXPECT_FLOAT_EQ( (boost::math::constants::pi<float>()*4.3)+1.1, 
-                compute(boost::math::constants::pi<float>(), 1.1));
-}
-
-
-TEST(UtilsTests, SumTest)
-{
-    EXPECT_EQ( 4+3, sum(4,3) );
-}
-
-
-TEST(EigenTests, MockTest)
-{
-    EXPECT_EQ( 1, test_eigen() );
 }
