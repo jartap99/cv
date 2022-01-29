@@ -1,0 +1,17 @@
+name: cv
+channels:
+  - conda-forge
+dependencies:
+  - cmake
+  - make
+  - python
+  - numpy
+  - scipy
+  - matplotlib
+  - gxx
+  - gdb
+  - boost
+  - eigen
+  - opencv
+  - glog
+  - gtest
