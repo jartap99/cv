@@ -4,7 +4,7 @@
 $ conda env create -f environment.yaml 
 ```
 
-## run
+## testenv
 
 ```
 $ conda activate cv
@@ -14,4 +14,8 @@ $ cd build
 $ cmake ../
 $ make all
 $ ./bin/testenv
+...
+...
+$ mkdir glogs
+$ ./bin/main
 ```
